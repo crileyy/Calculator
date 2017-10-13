@@ -5,10 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-
+/**
+ * Main logic for the calculator app
+ */
 public class MainActivity extends AppCompatActivity {
-
-  private int output = 0;
+  //decimal output of the calculator
+  private double output = 0;
+  //string operator
+  private String operation = "";
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -16,28 +20,38 @@ public class MainActivity extends AppCompatActivity {
     setContentView(R.layout.activity_main);
   }
 
+
+  //number buttons needs to check if there is a valid operation, and if there is execute it
+  //and change output
+
+  /**
+   * Sets the current value in the calculator to zero and resets any operations.
+   *
+   * @param view
+   */
   public void clear(View view) {
     TextView display = (TextView) findViewById(R.id.answer);
     this.output = 0;
+    this.operation = "";
     display.setText("");
   }
 
   public void negative(View view) {
     TextView display = (TextView) findViewById(R.id.answer);
-
-    display.setText("");
+    this.output = this.output * -1;
+    display.setText(String.format("%d", this.output));
   }
 
   public void percent(View view) {
     TextView display = (TextView) findViewById(R.id.answer);
-
-    display.setText("");
+    this.output = this.output / 100;
+    display.setText(String.format("%d", this.output));
   }
 
   public void divide(View view) {
     TextView display = (TextView) findViewById(R.id.answer);
-
-    display.setText("");
+    this.operation = "/";
+    display.setText(display.getText() + " / ");
   }
 
   public void numSeven(View view) {
@@ -108,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
 
   public void addition(View view) {
     TextView display = (TextView) findViewById(R.id.answer);
-
+    this.operation = "+";
     display.setText("");
   }
 
