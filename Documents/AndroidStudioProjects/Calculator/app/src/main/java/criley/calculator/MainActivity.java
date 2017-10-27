@@ -76,84 +76,66 @@ public class MainActivity extends AppCompatActivity {
 
   public void numSeven(View view) {
     TextView display = (TextView) findViewById(R.id.answer);
-    //if first number = 0, set it to 7
-    if (!this.opSet && this.firstNum == 0) {
-      this.firstNum = 7;
-      display.setText(String.valueOf(this.firstNum));
-      //if the operator hasn't been set yet, keep adding to first num
-    } else if (!this.opSet) {
-      this.firstNum = (this.firstNum * 10) + 7;
-      display.setText(String.valueOf(this.firstNum));
-      //if the operator has been set, add to second num
-    } else if (!this.secondSet) { // second num
-      this.secondNum = 7;
-      this.secondSet = true;
-      display.setText(String.valueOf(this.secondNum));
-      //add to second number
-    } else {
-      this.secondNum = (this.secondNum * 10) + 7;
-      display.setText(String.valueOf(this.secondNum));
-    }
+    this.numberButtonLogic(display, 7);
   }
 
   public void numEight(View view) {
     TextView display = (TextView) findViewById(R.id.answer);
-
-    display.setText("");
+    this.numberButtonLogic(display, 8);
   }
 
   public void numNine(View view) {
     TextView display = (TextView) findViewById(R.id.answer);
 
-    display.setText("");
+    this.numberButtonLogic(display, 9);
   }
 
   public void multiply(View view) {
     TextView display = (TextView) findViewById(R.id.answer);
-
+    this.operation = '*';
     display.setText("");
   }
 
   public void numFour(View view) {
     TextView display = (TextView) findViewById(R.id.answer);
 
-    display.setText(display + "4");
+    this.numberButtonLogic(display, 4);
   }
 
   public void numFive(View view) {
     TextView display = (TextView) findViewById(R.id.answer);
 
-    display.setText("");
+    this.numberButtonLogic(display, 5);
   }
 
   public void numSix(View view) {
     TextView display = (TextView) findViewById(R.id.answer);
 
-    display.setText("");
+    this.numberButtonLogic(display, 6);
   }
 
   public void subtract(View view) {
     TextView display = (TextView) findViewById(R.id.answer);
-
+    this.operation = '-';
     display.setText("");
   }
 
   public void numOne(View view) {
     TextView display = (TextView) findViewById(R.id.answer);
 
-    display.setText("");
+    this.numberButtonLogic(display, 1);
   }
 
   public void numTwo(View view) {
     TextView display = (TextView) findViewById(R.id.answer);
 
-    display.setText("");
+    this.numberButtonLogic(display, 2);
   }
 
   public void numThree(View view) {
     TextView display = (TextView) findViewById(R.id.answer);
 
-    display.setText("");
+    this.numberButtonLogic(display, 3);
   }
 
   public void addition(View view) {
@@ -165,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
   public void numZero(View view) {
     TextView display = (TextView) findViewById(R.id.answer);
 
-    display.setText("");
+    this.numberButtonLogic(display, 0);
   }
 
   public void addDecimal(View view) {
@@ -178,5 +160,32 @@ public class MainActivity extends AppCompatActivity {
     TextView display = (TextView) findViewById(R.id.answer);
 
     display.setText("");
+  }
+
+  /**
+   * The logic for when a button that is a number is pressed.
+   *
+   * @param display the TextView of the calculator
+   * @param number  the number of the button that is pressed
+   */
+  private void numberButtonLogic(TextView display, int number) {
+    //if first number = 0, set it to 7
+    if (!this.opSet && this.firstNum == 0) {
+      this.firstNum = number;
+      display.setText(String.valueOf(this.firstNum));
+      //if the operator hasn't been set yet, keep adding to first num
+    } else if (!this.opSet) {
+      this.firstNum = (this.firstNum * 10) + number;
+      display.setText(String.valueOf(this.firstNum));
+      //if the operator has been set, add to second num
+    } else if (!this.secondSet) { // second num
+      this.secondNum = number;
+      this.secondSet = true;
+      display.setText(String.valueOf(this.secondNum));
+      //add to second number
+    } else {
+      this.secondNum = (this.secondNum * 10) + number;
+      display.setText(String.valueOf(this.secondNum));
+    }
   }
 }
